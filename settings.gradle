@@ -1,0 +1,4 @@
+rootProject.name = 'comediator'
+
+include ":${modulePrefix}-api"
+include ":${modulePrefix}-impl"

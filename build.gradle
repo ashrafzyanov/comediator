@@ -1,0 +1,35 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    minJavaVersion = JavaVersion.VERSION_1_8
+}
+
+subprojects {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = minJavaVersion
+        targetCompatibility = minJavaVersion
+    }
+}
+
+project(':comediator-api') {
+    apply plugin: 'java'
+}
+
+project(':comediator-impl') {
+    apply plugin: 'java'
+
+    dependencies {
+        implementation project(':comediator-api')
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
